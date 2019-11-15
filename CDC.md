@@ -3,7 +3,7 @@
 
 ## Contexte
 
-Le BDE (Bureau des Etudiants) d'une école d'ingénieur communique les évènements et actualités de leur formation par envoi d'e-mails. Ces e-mails sont envoyés sur l'adresse mail étudiante des étudiants. Ces mails sont donc souvent noyés parmi d'autres notifications, et le BDE doit souvent faire du cas par cas pour obtenir des réponses.
+Le BDE (Bureau des Etudiants) d'une école d'ingénieur communique les évènements, les actualités et les appels à projets de leur formation par envoi d'e-mails. Ces e-mails sont envoyés sur l'adresse mail étudiante des étudiants. Ces mails sont donc souvent noyés parmi d'autres notifications, et le BDE doit souvent faire du cas par cas pour obtenir des réponses.
 
 Chaque année le nombre d'étudiants augmente et l'association a aujourd'hui besoin d'une application web pour simplifier la publication de ses évènements et actualités.
 
@@ -16,6 +16,7 @@ Les problématiques rencontrées sont :
 * Comment gérer plus simplement la publications d'évènements et actualités ?
 * Comment être plus efficace lors de la relance d'étudiants ?
 * Comment gagner du temps sur la préparation des évènements ?
+* Comment avoir plus de transparence sur la participation aux évènements et aux projets ?
 
 
 ## Besoins
@@ -25,15 +26,18 @@ Les besoins qui en découlent sont les suivants :
 * Pour les administrateurs, publier les actualités et évènements.
 * Pour les étudiants, voir les actualités et évènements.
 * Pour les étudiants, répondre aux évènements.
+* Pour les étudiants, répondre aux appels à projets.
+* Pour les utilisateurs, avoir accès aux coordonnées des contacts de l'école.
 
 
 ## Solutions fonctionnelles
 
 D'un point de vue fonctionnel, ces besoins sont traduits par :
 * Avoir un espace de connexion pour les étudiants et administrateurs du site.
-* Une interface visiteur qui permet aux étudiants à la fois de visionner les actualités et évènements, et à la fois de répondre à ceux-ci.
-* Une interface d'administration qui permet de publier les évènements et les actualités.
-* Une interface d'administration qui permet de savoir qui a répondu aux évènements, et donc d'avoir accès aux réponses.
+* Une interface visiteur qui permet aux étudiants à la fois de visionner les actualités, les évènements, les projets, et à la fois de répondre à ceux-ci.
+* Une interface d'administration qui permet de publier les évènements, les actualités et les projets.
+* Une interface d'administration qui permet de savoir qui a répondu aux évènements et aux projets, et donc d'avoir accès aux réponses.
+* Une interface visiteur qui renseigne les coordonnées des contacts de l'école.
 
 
 ## Solutions techniques
@@ -54,8 +58,7 @@ Cet environnement permet d'assurer aux développeurs un développement plus rapi
 ## Livrables
 
 Les développeurs livreront les éléments suivants :
-* Les documents permettant la bonne compréhension de la base de données (MEA, dictionnaire des données, matrice des dépendances fonctionnelles, liste des contraintes, MLD, MCD)
+* Les documents permettant la bonne compréhension de la base de données (MEA, dictionnaire des données, matrice des dépendances fonctionnelles, liste des contraintes)
 * Le cahier des charges qui permettra aux utilisateurs de comprendre le fonctionnement global de la solution.
-* La documentation qui permettra aux développeurs qui seront amenés à travailler sur la solution de comprendre le fonctionnement du code et les choix techniques.
 
 De manière générale les normes de développement des technologies utilisées et de conception de la base de données seront respectées.
