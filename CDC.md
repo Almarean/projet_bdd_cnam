@@ -58,7 +58,7 @@ Cet environnement permet d'assurer aux développeurs un développement plus rapi
 ## Livrables
 
 Les développeurs livreront les éléments suivants :
-* Les documents permettant la bonne compréhension de la base de données (MEA, dictionnaire des données, matrice des dépendances fonctionnelles, liste des contraintes)
+* Les documents permettant la bonne compréhension de la base de données (MEA, MLD, dictionnaire des données, matrice des dépendances fonctionnelles, liste des contraintes)
 * Le cahier des charges qui permettra aux utilisateurs de comprendre le fonctionnement global de la solution.
 
 De manière générale les normes de développement des technologies utilisées et de conception de la base de données seront respectées.
