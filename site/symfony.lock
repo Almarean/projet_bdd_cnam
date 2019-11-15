@@ -144,6 +144,18 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "sensiolabs/security-checker": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.0",
+            "ref": "160c9b600564faa1224e8f387d49ef13ceb8b793"
+        },
+        "files": [
+            "./config/packages/security_checker.yaml"
+        ]
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.3"
     },
@@ -453,6 +465,9 @@
             "./templates/base.html.twig"
         ]
     },
+    "symfony/twig-pack": {
+        "version": "v1.0.0"
+    },
     "symfony/validator": {
         "version": "4.3",
         "recipe": {
@@ -500,6 +515,9 @@
     },
     "symfony/yaml": {
         "version": "v4.3.8"
+    },
+    "twig/extra-bundle": {
+        "version": "v2.12.2"
     },
     "twig/twig": {
         "version": "v2.12.2"
