@@ -4,20 +4,12 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\DiscriminatorColumn;
-use Doctrine\ORM\Mapping\DiscriminatorMap;
-use Doctrine\ORM\Mapping\InheritanceType;
 
 /**
- * Abstract class Guest.
+ * Class Guest.
  *
  * @ORM\Entity(repositoryClass="App\Repository\GuestRepository")
- *
- * @InheritanceType("SINGLE_TABLE")
- * @DiscriminatorColumn(name="type", type="string")
- * @DiscriminatorMap({"administrator" = "Administrator", "student" = "Student"})
  *
  * @category Symfony4
  * @package  App\Entity
@@ -25,7 +17,7 @@ use Doctrine\ORM\Mapping\InheritanceType;
  * @license  https://www.gnu.org/licenses/license-list.fr.html GPL
  * @link     https://symfony.com/
  */
-abstract class Guest
+class Guest
 {
     /**
      * ID of the guest.
@@ -79,17 +71,24 @@ abstract class Guest
     private $isConfirmed;
 
     /**
+     * Projects of the guest.
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\Project", mappedBy="guests")
+     */
+    private $projects;
+
+    /**
      * Guest constructor.
      */
     public function __construct()
     {
-        $this->type = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     /**
      * Getter of the guest ID.
      *
-     * @return integer|null
+     * @return int|null
      */
     public function getId(): ?int
     {
@@ -111,7 +110,7 @@ abstract class Guest
      *
      * @param string $name Name to set.
      *
-     * @return self
+     * @return $this
      */
     public function setName(string $name): self
     {
@@ -131,11 +130,11 @@ abstract class Guest
     }
 
     /**
-     * Setter of the guest firstname.²
+     * Setter of the guest firstname.
      *
      * @param string $firstname Firstname to set.
      *
-     * @return self
+     * @return $this
      */
     public function setFirstname(string $firstname): self
     {
@@ -159,7 +158,7 @@ abstract class Guest
      *
      * @param string $email Email to set.
      *
-     * @return self
+     * @return $this
      */
     public function setEmail(string $email): self
     {
@@ -183,7 +182,7 @@ abstract class Guest
      *
      * @param string|null $phone Phone number to set.
      *
-     * @return self
+     * @return $this
      */
     public function setPhone(?string $phone): self
     {
@@ -193,7 +192,7 @@ abstract class Guest
     }
 
     /**
-     * Getter of the guest password.
+     * Getter of the password.
      *
      * @return string|null
      */
@@ -207,7 +206,7 @@ abstract class Guest
      *
      * @param string $password Password to set.
      *
-     * @return self
+     * @return $this
      */
     public function setPassword(string $password): self
     {
@@ -219,7 +218,7 @@ abstract class Guest
     /**
      * Getter of the guest confirmation.
      *
-     * @return boolean|null
+     * @return bool|null
      */
     public function getIsConfirmed(): ?bool
     {
@@ -229,13 +228,57 @@ abstract class Guest
     /**
      * Setter of the guest confirmation.
      *
-     * @param boolean $isConfirmed Confirmation to set.
+     * @param bool $isConfirmed Confirmation to set.
      *
-     * @return self
+     * @return $this
      */
     public function setIsConfirmed(bool $isConfirmed): self
     {
         $this->isConfirmed = $isConfirmed;
+
+        return $this;
+    }
+
+    /**
+     * Getter of the guest projects.
+     *
+     * @return Collection|Project[]
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    /**
+     * Add a projet to the guest.
+     *
+     * @param Project $project Project to add.
+     *
+     * @return $this
+     */
+    public function addProject(Project $project): self
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->addGuest($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove a project from the guest.
+     *
+     * @param Project $project Project to remove.
+     *
+     * @return $this
+     */
+    public function removeProject(Project $project): self
+    {
+        if ($this->projects->contains($project)) {
+            $this->projects->removeElement($project);
+            $project->removeGuest($this);
+        }
 
         return $this;
     }

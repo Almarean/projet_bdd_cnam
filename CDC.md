@@ -44,13 +44,13 @@ D'un point de vue fonctionnel, ces besoins sont traduits par :
 
 Les étudiants qui vont travailler sur cette solution vont utiliser leur expérience dans l'utilisation du framework PHP [Symfony](https://symfony.com/) et de l'environnement suivant :
 * HTML5 / CSS3 / JavaScript
-* [jQuery](https://jquery.com/) : Framework JavaScript
+* [jQuery](https://jquery.com/) : Framework JavaScript simplifiant le parcours et l'exploitation du DOM.
 * [Twig](https://twig.symfony.com/doc/2.x/) : Moteur de template traditionnel de Symfony
 * [Bootstrap](https://getbootstrap.com/) : Framework CSS et JavaScript permettant de créer plus facilement des interfaces web responsives et mobile-first
 * [Composer](https://getcomposer.org/) : Gestionnaire de dépendances pour PHP
-* [PostgreSQL](https://www.postgresql.org/) : SGBD pour le stockage et la manipulation
-* [Git](https://git-scm.com/) : Gestionnaire de versions
-* [Docker](https://www.docker.com/) : Gestionnaire de conteneurs
+* [PostgreSQL](https://www.postgresql.org/) : SGBD pour le stockage et la manipulation, solution gratuite et performante pour réaliser des opérations sur les données. Se déploie facilement.
+* [Git](https://git-scm.com/) : Gestionnaire de versions permettant d'entériner les modifications fonctionnelles apportées à la solution, et de revenir à des versions précédentes si besoin.
+* [Docker](https://www.docker.com/) : Gestionnaire de conteneurs, choisi pour sa simplicité de déploiement et de maintenance
 
 Cet environnement permet d'assurer aux développeurs un développement plus rapide de la solution, mais également une maintenance et une évolutivité plus aisées.
 
@@ -60,5 +60,6 @@ Cet environnement permet d'assurer aux développeurs un développement plus rapi
 Les développeurs livreront les éléments suivants :
 * Les documents permettant la bonne compréhension de la base de données (MEA, MLD, dictionnaire des données, matrice des dépendances fonctionnelles, liste des contraintes)
 * Le cahier des charges qui permettra aux utilisateurs de comprendre le fonctionnement global de la solution.
+* La solution demandées.
 
 De manière générale les normes de développement des technologies utilisées et de conception de la base de données seront respectées.

@@ -55,16 +55,9 @@ class Contact
     private $phone;
 
     /**
-     * Role of the contact.
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    private $role;
-
-    /**
      * Getter of the contact ID.
      *
-     * @return integer|null
+     * @return int|null
      */
     public function getId(): ?int
     {
@@ -86,7 +79,7 @@ class Contact
      *
      * @param string $name Name to set.
      *
-     * @return self
+     * @return $this
      */
     public function setName(string $name): self
     {
@@ -98,7 +91,7 @@ class Contact
     /**
      * Getter of the contact firstname.
      *
-     * @return string|null Firstname to set.
+     * @return string|null
      */
     public function getFirstname(): ?string
     {
@@ -110,7 +103,7 @@ class Contact
      *
      * @param string $firstname Firstname to set.
      *
-     * @return self
+     * @return $this
      */
     public function setFirstname(string $firstname): self
     {
@@ -134,7 +127,7 @@ class Contact
      *
      * @param string $email Email to set.
      *
-     * @return self
+     * @return $this
      */
     public function setEmail(string $email): self
     {
@@ -156,37 +149,13 @@ class Contact
     /**
      * Setter of the contact phone number.
      *
-     * @param string|null $phone Phone number to set.
+     * @param string $phone Phone number to set.
      *
-     * @return self
+     * @return $this
      */
-    public function setPhone(?string $phone): self
+    public function setPhone(string $phone): self
     {
         $this->phone = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Getter of the contact role.
-     *
-     * @return string|null
-     */
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-
-    /**
-     * Setter of the contact role.
-     *
-     * @param string $role Role to set.
-     *
-     * @return self
-     */
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
 
         return $this;
     }
