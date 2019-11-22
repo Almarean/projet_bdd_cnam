@@ -1,0 +1,14 @@
+{% extends 'navbar_admin.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <section>
+            <h1>{{ type_publication }} registration</h1>
+            <article>
+                {{ form_start(form) }}
+                {{ form_end(form) }}
+            </article>
+        </section>
+    </div>
+{% endblock %}

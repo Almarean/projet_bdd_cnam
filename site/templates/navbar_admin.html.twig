@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Dashboard BDE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Client interface</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Registration
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('registration', {'type': 'news'}) }}">News</a>
+                        <a class="dropdown-item" href="{{ path('registration', {'type': 'event'}) }}">Events</a>
+                        <a class="dropdown-item" href="{{ path('registration', {'type': 'project'}) }}">Projects</a>
+                        <a class="dropdown-item" href="{{ path('registration', {'type': 'contact'}) }}">Contacts</a>
+                    </div>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <i class="fas fa-user"></i> Connection
+            </span>
+        </div>
+    </nav>
+{% endblock %}

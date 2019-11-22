@@ -53,7 +53,14 @@ abstract class Publication
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Guest")
      */
-    protected $author;
+    /*protected $author;*/
+
+    /**
+     * Image of the publication.
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
 
     /**
      * Getter of the publication ID.
@@ -133,14 +140,38 @@ abstract class Publication
     }
 
     /**
+     * Getter of the image of the publication.
+     *
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Setter of the image of the publication.
+     *
+     * @param string $image Image to set.
+     *
+     * @return $this
+     */
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
      * Getter of the publication author.
      *
      * @return Guest|null
      */
-    public function getAuthor(): ?Guest
+    /*public function getAuthor(): ?Guest
     {
         return $this->author;
-    }
+    }*/
 
     /**
      * Setter of the publication author.
@@ -149,10 +180,10 @@ abstract class Publication
      *
      * @return $this
      */
-    public function setAuthor(?Guest $author): self
+    /*public function setAuthor(?Guest $author): self
     {
         $this->author = $author;
 
         return $this;
-    }
+    }*/
 }

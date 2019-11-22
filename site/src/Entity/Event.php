@@ -45,7 +45,7 @@ class Event extends Publication
      *
      * @ORM\Column(type="date")
      */
-    private $date;
+    private $eventDate;
 
     /**
      * Event constructor.
@@ -155,21 +155,21 @@ class Event extends Publication
      *
      * @return \DateTimeInterface|null
      */
-    public function getDate(): ?\DateTimeInterface
+    public function getEventDate(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->eventDate;
     }
 
     /**
      * Setter of the event date.
      *
-     * @param \DateTimeInterface $date Date to set.
+     * @param \DateTimeInterface $eventDate Date to set.
      *
      * @return $this
      */
-    public function setDate(\DateTimeInterface $date): self
+    public function setEventDate(\DateTimeInterface $eventDate): self
     {
-        $this->date = $date;
+        $this->$eventDate = $eventDate;
 
         return $this;
     }
