@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Contact;
 use App\Entity\Guest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -21,12 +22,18 @@ class RegistrationService extends AbstractController
      * Function that checks if the email in parameter exists in database.
      *
      * @param string $email The email to check.
+     * @param string $type Type to search.
      *
      * @return bool|null
      */
-    public function checkEmailExistence(string $email): ?bool
+    public function checkEmailExistence(string $email, string $type): ?bool
     {
-        $repository = $this->getDoctrine()->getRepository(Guest::class);
+        if ($type === 'contact') {
+            $repository = $this->getDoctrine()->getRepository(Contact::class);
+        } else {
+            $repository = $this->getDoctrine()->getRepository(Guest::class);
+        }
+
         $result = $repository->findOneBy(array(
             'email' => $email
         ));

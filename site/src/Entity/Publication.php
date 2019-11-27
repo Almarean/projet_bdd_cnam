@@ -44,7 +44,7 @@ abstract class Publication
     /**
      * Publication date of the publication.
      *
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     protected $datePublication;
 

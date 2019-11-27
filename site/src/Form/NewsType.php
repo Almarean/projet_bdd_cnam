@@ -36,8 +36,7 @@ class NewsType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('image', FileType::class, array(
                 'required' => false
-            ))
-            ->add('submit_button', SubmitType::class, array('label' => 'Enregistrer'));
+            ));
     }
 
     /**

@@ -35,8 +35,7 @@ class ContactType extends AbstractType
             ->add('email', EmailType::class)
             ->add('phone', TextType::class, array(
                 'required' => false
-            ))
-            ->add('submit_button', SubmitType::class, array('label' => 'Save'));
+            ));
     }
     /**
      * @param OptionsResolver $resolver

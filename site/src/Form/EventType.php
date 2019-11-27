@@ -41,8 +41,7 @@ class EventType extends AbstractType
             ->add('type_event', TextType::class)
             ->add('image', FileType::class, array(
                 'required' => false
-            ))
-            ->add('submit_button', SubmitType::class, array('label' => 'Save'));
+            ));
     }
 
     /**

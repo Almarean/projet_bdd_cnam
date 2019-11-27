@@ -34,11 +34,12 @@ class ProjectType extends AbstractType
         $builder
             ->add('label', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('end_date', DateType::class)
+            ->add('end_date', DateType::class, array(
+                'widget' => 'choice'
+            ))
             ->add('image', FileType::class, array(
                 'required' => false
-            ))
-            ->add('submit_button', SubmitType::class, array('label' => 'Enregistrer'));
+            ));
     }
 
     /**

@@ -41,9 +41,9 @@ class Event extends Publication
     private $participations;
 
     /**
-     * Date of the event.
+     * The event date.
      *
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $eventDate;
 
@@ -163,13 +163,13 @@ class Event extends Publication
     /**
      * Setter of the event date.
      *
-     * @param \DateTimeInterface $eventDate Date to set.
+     * @param \DateTimeInterface $eventDate Event date to set.
      *
      * @return $this
      */
     public function setEventDate(\DateTimeInterface $eventDate): self
     {
-        $this->$eventDate = $eventDate;
+        $this->eventDate = $eventDate;
 
         return $this;
     }
