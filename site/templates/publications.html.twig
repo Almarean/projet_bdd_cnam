@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" style="width: 30rem">
+                <h1>Evenements :</h1>
+                <hr>
+                {% for event in events %}
+                    <div class="card mb-4 shadow-sm" >
+                        <div class="card-body">
+                            <h4>{{ event.label }}</h4>
+                            <p class="card-text text-justify">{{ event.description|truncate(250) }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#event-{{ event.id }}">View</button>
+                                </div>
+                                <small class="text-muted">{{ event.datePublication|date('d/m/Y') }}</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="event-{{ event.id }}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{ event.label }}</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <p>
+                                        {{ event.description }}
+                                    </p>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <small class="text-muted">{{ event.datePublication|date('d/m/Y') }}</small>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-4" style="width: 30rem">
+                <h1>News :</h1>
+                <hr>
+                {% for new in news %}
+                    <div class="card mb-4 shadow-sm" >
+                        <img class="img-fluid" src="{{ asset('images/' ~ new.image) }}" alt="Image non chargée.">
+                        <div class="card-body">
+                            <h4>{{ new.label }}</h4>
+                            <p class="card-text text-justify">{{ new.description|truncate(250) }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#news-{{ new.id }}">View</button>
+                                </div>
+                                <small class="text-muted">{{ new.datePublication|date('d/m/Y') }}</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="news-{{ new.id }}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{ new.label }}</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    {% if new.image != null %}
+                                        <img class="img-fluid" src="{{ asset('images/' ~ new.image) }}" alt="Image non chargée.">
+                                    {% endif %}
+                                    <p>
+                                        {{ new.description }}
+                                    </p>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <small class="text-muted">{{ new.datePublication|date('d/m/Y') }}</small>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-4" style="width: 30rem">
+                <h1>Projets :</h1>
+                <hr>
+                {% for project in projects %}
+                    <div class="card mb-4 shadow-sm">
+                        <img class="img-fluid" src="{{ asset('images/' ~ project.image) }}" alt="Image non chargée.">
+                        <div class="card-body">
+                            <h4>{{ project.label }}</h4>
+                            <p class="card-text text-justify">{{ project.description|truncate(250) }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#project-{{ project.id }}">View</button>
+                                </div>
+                                <small class="text-muted">{{ project.datePublication|date('d/m/Y') }}</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="project-{{ project.id }}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{ project.label }}</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    {% if project.image != null %}
+                                        <img class="img-fluid" src="{{ asset('images/' ~ project.image) }}" alt="Image non chargée.">
+                                    {% endif %}
+                                    <p>
+                                        {{ project.description }}
+                                    </p>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <small class="text-muted">{{ project.datePublication|date('d/m/Y') }}</small>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -66,7 +66,8 @@ CREATE TABLE public.project (
     date_publication date NOT NULL,
     date date NOT NULL,
     image character varying(255) NOT NULL,
-    date_end date NOT NULL
+    date_end date NOT NULL,
+    author_id integer
 );
 
 DROP TABLE IF EXISTS public.project_guest CASCADE;
