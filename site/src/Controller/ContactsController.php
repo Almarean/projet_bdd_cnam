@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class ContactController.
+ * Class ContactsController extends AbstractController.
  *
  * @category Symfony4
  * @package  App\Controller
@@ -16,14 +16,14 @@ use Symfony\Component\Routing\Annotation\Route;
  * @license  https://www.gnu.org/licenses/license-list.fr.html GPL
  * @link     https://symfony.com/
  */
-class ContactController extends AbstractController
+class ContactsController extends AbstractController
 {
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contacts", name="contacts")
      */
     public function index(): ?Response
     {
-        return $this->render('contact.html.twig', array(
+        return $this->render('contacts.html.twig', array(
             'contacts' => $this->getDoctrine()->getRepository(Contact::class)->findAll()
         ));
     }
