@@ -49,6 +49,8 @@ class RegistrationController extends AbstractController
                 array_push($errors, $error);
             }
             if (!count($errors) > 0) {
+                $guest->setName(ucwords(strtolower($guest->getName())));
+                $guest->setFirstname(ucwords(strtolower($guest->getFirstname())));
                 $guest->setIsConfirmed(false);
                 $guest->setPassword($encoder->encodePassword($guest, $guest->getPassword()));
                 $manager->persist($guest);

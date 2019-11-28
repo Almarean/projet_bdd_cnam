@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactsController extends AbstractController
 {
     /**
-     * @Route("/contacts", name="contacts")
+     * @Route("/client/contacts", name="contacts")
      */
     public function index(): ?Response
     {

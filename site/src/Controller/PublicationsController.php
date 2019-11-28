@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PublicationsController extends AbstractController
 {
     /**
-     * @Route("/publications", name="publications")
+     * @Route("/client/publications", name="publications")
      */
     public function index()
     {

@@ -31,7 +31,7 @@ class RegistrationPublicationsController extends AbstractController
     /**
      * The entry point for the registration of the publications.
      *
-     * @Route("/registration/publications/{type}", name="registration_publications")
+     * @Route("/client/registration/publications/{type}", name="registration_publications")
      *
      * @param Request $request
      * @param EntityManagerInterface $manager
@@ -87,6 +87,10 @@ class RegistrationPublicationsController extends AbstractController
             if (!count($errors) > 0) {
                 if ($type !== 'Contact') {
                     $record->setDatePublication(new \DateTime());
+                }
+                if ($type === 'Contact') {
+                    $record->setName(ucwords(strtolower($record->getName())));
+                    $record->setFirstname(ucwords(strtolower($record->getName())));
                 }
                 $manager->persist($record);
                 $manager->flush();

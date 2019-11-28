@@ -21,7 +21,7 @@ class DashboardController extends AbstractController
     /**
      * Entry point of the dashboard.
      *
-     * @Route("/dashboard", name="dashboard")
+     * @Route("/admin/dashboard", name="dashboard")
      *
      * @return Response
      */

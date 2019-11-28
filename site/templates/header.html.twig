@@ -12,21 +12,19 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                        <a class="nav-link" href="{{ path('publications') }}"><i class="fas fa-home"></i> Publications</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-address-book"></i> Contacts</a>
+                        <a class="nav-link" href="{{ path('contacts') }}"><i class="fas fa-address-book"></i> Contacts</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('dashboard') }}"><i class="fas fa-columns"></i> Admin dashboard</a>
+                        </li>
+                    {% endif %}
                 </ul>
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" style="color:rgb(0,0,0); opacity: 50%" aria-expanded="false">
-                        Connection
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt"></i> Sign in</a>
-                        <a class="dropdown-item" href="{{ path('registration') }}">Sign up</a>
-                    </div>
+                <div class="nav-item">
+                    <a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
             </div>
         </nav>
