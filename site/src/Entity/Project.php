@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Guest;
+use App\Entity\Publication;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class Project extends News.
@@ -17,10 +19,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @license  https://www.gnu.org/licenses/license-list.fr.html GPL
  * @link     https://symfony.com/
  */
-class Project extends News
+class Project extends Publication
 {
     /**
-     * Guests of the project.
+     * Users of the project.
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Guest", inversedBy="projects")
      */
@@ -57,7 +59,7 @@ class Project extends News
      */
     public function addGuest(Guest $guest): self
     {
-        if (!$this->guests->contains($guest)) {
+        if (!$this->guests->contains($guests)) {
             $this->guests[] = $guest;
         }
 

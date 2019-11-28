@@ -2,10 +2,10 @@
 
 namespace App\Service;
 
-use App\Entity\Contact;
 use App\Entity\Guest;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Contact;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Class RegistrationService extends AbstractController.
@@ -26,14 +26,13 @@ class RegistrationService extends AbstractController
      *
      * @return bool|null
      */
-    public function checkEmailExistence(string $email, string $type): ?bool
+    public function checkEmailExistence(string $email, string $type = null): ?bool
     {
         if ($type === 'contact') {
             $repository = $this->getDoctrine()->getRepository(Contact::class);
         } else {
             $repository = $this->getDoctrine()->getRepository(Guest::class);
         }
-
         $result = $repository->findOneBy(array(
             'email' => $email
         ));

@@ -120,6 +120,11 @@ abstract class Publication
         return $this;
     }
 
+    /**
+     * Getter of the publication date.
+     *
+     * @return \DateTimeInterface|null
+     */
     public function getDatePublication(): ?\DateTimeInterface
     {
         return $this->datePublication;

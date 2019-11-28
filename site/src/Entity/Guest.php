@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class Guest.
+ * Class Guest implements UserInterface.
  *
  * @ORM\Entity(repositoryClass="App\Repository\GuestRepository")
  *
@@ -17,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @license  https://www.gnu.org/licenses/license-list.fr.html GPL
  * @link     https://symfony.com/
  */
-class Guest
+class Guest implements UserInterface
 {
     /**
      * ID of the guest.
@@ -27,6 +26,28 @@ class Guest
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * Email of the guest.
+     *
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $email;
+
+    /**
+     * Roles of the guest.
+     *
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * Password of the guest.
+     *
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
 
     /**
      * Name of the guest.
@@ -43,13 +64,6 @@ class Guest
     private $firstname;
 
     /**
-     * Email of the guest.
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
      * Phone number of the guest.
      *
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -57,14 +71,7 @@ class Guest
     private $phone;
 
     /**
-     * Password of the guest.
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
-
-    /**
-     * Confirmation of the guest.
+     * State of confirmation of the guest.
      *
      * @ORM\Column(type="boolean")
      */
@@ -78,69 +85,13 @@ class Guest
     private $projects;
 
     /**
-     * Guest constructor.
-     */
-    public function __construct()
-    {
-        $this->projects = new ArrayCollection();
-    }
-
-    /**
      * Getter of the guest ID.
      *
-     * @return int|null
+     * @return integer|null
      */
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * Getter of the guest name.
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * Setter of the guest name.
-     *
-     * @param string $name Name to set.
-     *
-     * @return $this
-     */
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Getter of the guest firstname.
-     *
-     * @return string|null
-     */
-    public function getFirstname(): ?string
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * Setter of the guest firstname.
-     *
-     * @param string $firstname Firstname to set.
-     *
-     * @return $this
-     */
-    public function setFirstname(string $firstname): self
-    {
-        $this->firstname = $firstname;
-
-        return $this;
     }
 
     /**
@@ -168,6 +119,129 @@ class Guest
     }
 
     /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * Getter of the user roles.
+     *
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    /**
+     * Setter of the user roles.
+     */
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Getter of the guest password.
+     *
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
+    }
+
+    /**
+     * Setter of the guest password.
+     *
+     * @param string $password Password to set.
+     *
+     * @return self
+     */
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    /**
+     * Getter of the guest name.
+     *
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Setter of the guest name.
+     *
+     * @param string $name Name to set.
+     *
+     * @return self
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Getter of the guest firstname.
+     *
+     * @return string|null
+     */
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Setter of the guest firstname.
+     *
+     * @param string $firstname Firstname to set.
+     *
+     * @return self
+     */
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
      * Getter of the guest phone number.
      *
      * @return string|null
@@ -180,9 +254,9 @@ class Guest
     /**
      * Setter of the guest phone number.
      *
-     * @param string|null $phone Phone number to set.
+     * @param string $phone Phone number to set.
      *
-     * @return $this
+     * @return self
      */
     public function setPhone(?string $phone): self
     {
@@ -192,33 +266,9 @@ class Guest
     }
 
     /**
-     * Getter of the password.
+     * Getter of the state of confirmation of the guest.
      *
-     * @return string|null
-     */
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    /**
-     * Setter of the guest password.
-     *
-     * @param string $password Password to set.
-     *
-     * @return $this
-     */
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Getter of the guest confirmation.
-     *
-     * @return bool|null
+     * @return boolean|null
      */
     public function getIsConfirmed(): ?bool
     {
@@ -226,13 +276,13 @@ class Guest
     }
 
     /**
-     * Setter of the guest confirmation.
+     * Setter of the state of confirmation of the guest.
      *
-     * @param bool $isConfirmed Confirmation to set.
+     * @param boolean $isConfirmed State of confirmation to set.
      *
-     * @return $this
+     * @return self
      */
-    public function setIsConfirmed(bool $isConfirmed): self
+    public function setIsConfirmed(bool $isConfirmed = false): self
     {
         $this->isConfirmed = $isConfirmed;
 

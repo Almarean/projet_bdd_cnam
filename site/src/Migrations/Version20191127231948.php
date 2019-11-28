@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191127101632 extends AbstractMigration
+final class Version20191127231948 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -27,14 +27,16 @@ final class Version20191127101632 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE guest_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE news_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE participation_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE project_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE contact (id INT NOT NULL, name VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, phone VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE event (id INT NOT NULL, image VARCHAR(255) DEFAULT NULL, place VARCHAR(255) NOT NULL, type_event VARCHAR(255) NOT NULL, event_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, label VARCHAR(255) NOT NULL, description TEXT NOT NULL, date_publication TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE TABLE guest (id INT NOT NULL, name VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, phone VARCHAR(255) DEFAULT NULL, password VARCHAR(255) NOT NULL, is_confirmed BOOLEAN NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE guest (id INT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, phone VARCHAR(255) DEFAULT NULL, is_confirmed BOOLEAN NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_ACB79A35E7927C74 ON guest (email)');
         $this->addSql('CREATE TABLE news (id INT NOT NULL, image VARCHAR(255) DEFAULT NULL, label VARCHAR(255) NOT NULL, description TEXT NOT NULL, date_publication TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE participation (id INT NOT NULL, guest_id INT DEFAULT NULL, event_id INT DEFAULT NULL, nb_persons INT DEFAULT NULL, participe BOOLEAN NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_AB55E24F9A4AA658 ON participation (guest_id)');
         $this->addSql('CREATE INDEX IDX_AB55E24F71F7E88B ON participation (event_id)');
-        $this->addSql('CREATE TABLE project (id INT NOT NULL, image VARCHAR(255) DEFAULT NULL, label VARCHAR(255) NOT NULL, description TEXT NOT NULL, date_publication TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, end_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE project (id INT NOT NULL, image VARCHAR(255) DEFAULT NULL, end_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, label VARCHAR(255) NOT NULL, description TEXT NOT NULL, date_publication TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE project_guest (project_id INT NOT NULL, guest_id INT NOT NULL, PRIMARY KEY(project_id, guest_id))');
         $this->addSql('CREATE INDEX IDX_BFE293AB166D1F9C ON project_guest (project_id)');
         $this->addSql('CREATE INDEX IDX_BFE293AB9A4AA658 ON project_guest (guest_id)');
@@ -59,6 +61,7 @@ final class Version20191127101632 extends AbstractMigration
         $this->addSql('DROP SEQUENCE guest_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE news_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE participation_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE project_id_seq CASCADE');
         $this->addSql('DROP TABLE contact');
         $this->addSql('DROP TABLE event');
         $this->addSql('DROP TABLE guest');

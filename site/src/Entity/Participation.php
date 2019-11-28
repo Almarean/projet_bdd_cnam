@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Guest;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -112,7 +113,7 @@ class Participation
     }
 
     /**
-     * Getter of the guest.
+     * Getter of the user.
      *
      * @return Guest|null
      */
@@ -122,7 +123,7 @@ class Participation
     }
 
     /**
-     * Setter of the guest.
+     * Setter of the user.
      *
      * @param Guest|null $guest Guest to set.
      *
