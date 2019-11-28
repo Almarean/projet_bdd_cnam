@@ -2,20 +2,21 @@
 
 namespace App\Controller;
 
-use App\Entity\Contact;
-use App\Entity\Event;
 use App\Entity\News;
-use App\Entity\Project;
-use App\Form\ContactType;
-use App\Form\EventType;
+use App\Entity\Event;
 use App\Form\NewsType;
+use App\Entity\Contact;
+use App\Entity\Project;
+use App\Form\EventType;
+use App\Form\ContactType;
 use App\Form\ProjectType;
 use App\Service\RegistrationService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Class RegistrationItemsController extends AbstractController.
@@ -36,12 +37,13 @@ class RegistrationPublicationsController extends AbstractController
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @param RegistrationService $service
+     * @param Security $security
      * @param string $type
      *
      * @return Response
      * @throws \Exception
      */
-    public function index(Request $request, EntityManagerInterface $manager, RegistrationService $service, string $type): Response
+    public function index(Request $request, EntityManagerInterface $manager, RegistrationService $service, Security $security, string $type): Response
     {
         $errors = array();
         $form = null;
@@ -87,6 +89,7 @@ class RegistrationPublicationsController extends AbstractController
             if (!count($errors) > 0) {
                 if ($type !== 'Contact') {
                     $record->setDatePublication(new \DateTime());
+                    $record->setAuthor($security->getUser());
                 }
                 if ($type === 'Contact') {
                     $record->setName(ucwords(strtolower($record->getName())));
