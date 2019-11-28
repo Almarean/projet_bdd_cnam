@@ -12,10 +12,11 @@ CREATE TABLE public.event (
     id SERIAL PRIMARY KEY,
     label character varying(255) NOT NULL,
     description text NOT NULL,
-    date_publication date NOT NULL,
+    date_publication timestamp NOT NULL,
     place character varying(255) NOT NULL,
     type_event character varying(255) NOT NULL,
-    date date NOT NULL,
+    event_date timestamp NOT NULL,
+    image character varying(255) NOT NULL,
     author_id integer
 );
 
@@ -27,7 +28,8 @@ CREATE TABLE public.guest (
     email character varying(255) NOT NULL,
     phone character varying(255) DEFAULT NULL::character varying,
     password character varying(255) NOT NULL,
-    is_confirmed boolean NOT NULL
+    is_confirmed boolean NOT NULL,
+    roles json NOT NULL
 );
 
 DROP TABLE IF EXISTS public.migration_versions CASCADE;
@@ -43,8 +45,7 @@ CREATE TABLE public.news (
     id SERIAL PRIMARY KEY,
     label character varying(255) NOT NULL,
     description text NOT NULL,
-    date_publication date NOT NULL,
-    date date NOT NULL,
+    date_publication timestamp NOT NULL,
     image character varying(255) NOT NULL,
     author_id integer
 );
@@ -63,10 +64,9 @@ CREATE TABLE public.project (
     id SERIAL PRIMARY KEY,
     label character varying(255) NOT NULL,
     description text NOT NULL,
-    date_publication date NOT NULL,
-    date date NOT NULL,
+    date_publication timestamp NOT NULL,
     image character varying(255) NOT NULL,
-    date_end date NOT NULL,
+    end_date timestamp NOT NULL,
     author_id integer
 );
 

@@ -2,4 +2,44 @@
 
 {% block body %}
     {{ parent() }}
+    <div class="container">
+        <section>
+            <div class="row mt-5">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-newspaper"></i> News</h5>
+                            <a href="{{ path('registration_publications', {'type': 'News'}) }}" class="btn btn-primary">Registration</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-calendar-day"></i> Event</h5>
+                            <a href="{{ path('registration_publications', {'type': 'Event'}) }}" class="btn btn-primary">Registration</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-network-wired"></i> Project</h5>
+                            <a href="{{ path('registration_publications', {'type': 'Project'}) }}" class="btn btn-primary">Registration</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-id-card"></i> Contact</h5>
+                            <a href="{{ path('registration_publications', {'type': 'Contact'}) }}" class="btn btn-primary">Registration</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 {% endblock %}

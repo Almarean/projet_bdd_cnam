@@ -3,7 +3,7 @@
 {% block body %}
     {{ parent() }}
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-md-4" style="width: 30rem">
                 <h1>Evenements :</h1>
                 <hr>
@@ -55,7 +55,7 @@
                 <hr>
                 {% for new in news %}
                     <div class="card mb-4 shadow-sm" >
-                        <img class="img-fluid" src="{{ asset('images/' ~ new.image) }}" alt="Image non chargée.">
+                        <img class="img-fluid" src="{{ asset('images/publications/' ~ new.image) }}" alt="Image non chargée.">
                         <div class="card-body">
                             <h4>{{ new.label }}</h4>
                             <p class="card-text text-justify">{{ new.description|truncate(250) }}</p>
