@@ -16,7 +16,7 @@ CREATE TABLE public.event (
     place character varying(255) NOT NULL,
     type_event character varying(255) NOT NULL,
     event_date timestamp NOT NULL,
-    image character varying(255) NOT NULL,
+    image character varying(255) NULL,
     author_id integer
 );
 
@@ -46,7 +46,7 @@ CREATE TABLE public.news (
     label character varying(255) NOT NULL,
     description text NOT NULL,
     date_publication timestamp NOT NULL,
-    image character varying(255) NOT NULL,
+    image character varying(255) NULL,
     author_id integer
 );
 
@@ -65,7 +65,7 @@ CREATE TABLE public.project (
     label character varying(255) NOT NULL,
     description text NOT NULL,
     date_publication timestamp NOT NULL,
-    image character varying(255) NOT NULL,
+    image character varying(255) NULL,
     end_date timestamp NOT NULL,
     author_id integer
 );
