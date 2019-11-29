@@ -80,7 +80,7 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     {% if new.image != null %}
-                                        <img class="img-fluid" src="{{ asset('images/' ~ new.image) }}" alt="Image non chargée.">
+                                        <img class="img-fluid" src="{{ asset('images/publications/' ~ new.image) }}" alt="Image non chargée.">
                                     {% endif %}
                                     <p>
                                         {{ new.description }}
@@ -105,7 +105,7 @@
                 <hr>
                 {% for project in projects %}
                     <div class="card mb-4 shadow-sm">
-                        <img class="img-fluid" src="{{ asset('images/' ~ project.image) }}" alt="Image non chargée.">
+                        <img class="img-fluid" src="{{ asset('images/publications/' ~ project.image) }}" alt="Image non chargée.">
                         <div class="card-body">
                             <h4>{{ project.label }}</h4>
                             <p class="card-text text-justify">{{ project.description|truncate(250) }}</p>
@@ -130,7 +130,7 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     {% if project.image != null %}
-                                        <img class="img-fluid" src="{{ asset('images/' ~ project.image) }}" alt="Image non chargée.">
+                                        <img class="img-fluid" src="{{ asset('images/publications/' ~ project.image) }}" alt="Image non chargée.">
                                     {% endif %}
                                     <p>
                                         {{ project.description }}
