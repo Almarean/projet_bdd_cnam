@@ -19,6 +19,11 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
+    public function findByDatePublicationDesc($value)
+    {
+
+    }
+
     // /**
     //  * @return Project[] Returns an array of Project objects
     //  */

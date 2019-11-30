@@ -2,8 +2,11 @@
 
 namespace App\Service;
 
+use App\Entity\Event;
 use App\Entity\Guest;
 use App\Entity\Contact;
+use App\Entity\Participation;
+use App\Entity\Project;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -60,9 +63,27 @@ class RegistrationService extends AbstractController
      *
      * @return string|null
      */
-    public function imageProcessing(UploadedFile $file): ?string {
+    public function imageProcessing(UploadedFile $file): ?string
+    {
         $imageName = uniqid() . '.' . $file->guessExtension();
         $file->move($this->getParameter('images_publications_directory'), $imageName);
         return $imageName;
+    }
+
+    /**
+     * Function that checks if a guest already answerde
+     *
+     * @param Guest $guest
+     * @param Event $event
+     *
+     * @return bool|null
+     */
+    public function checkEventParticipation(Guest $guest, Event $event): ?bool
+    {
+        $repository = $this->getDoctrine()->getRepository(Participation::class);
+        return $repository->findOneBy(array(
+            'guest' => $guest,
+            'event' => $event
+        )) !== null;
     }
 }

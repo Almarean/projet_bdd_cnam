@@ -3,18 +3,19 @@
 {% block body %}
     {{ parent() }}
     <div class="container">
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
-        <br>
-        <table class="table">
-            <thead class="thead-light">
-            <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>Phone</th>
-            </tr>
-            </thead>
-            <tbody id="contactTable">
+        <section class="mt-5">
+            <input class="form-control col-md-6 mx-auto" id="myInput" type="text" placeholder="Search...">
+            <br>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                </tr>
+                </thead>
+                <tbody id="contactTable">
                 {% for contact in contacts %}
                     <tr>
                         <td>{{ contact.firstname }}</td>
@@ -23,8 +24,9 @@
                         <td>{{ contact.phone }}</td>
                     </tr>
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </section>
     </div>
 {% endblock %}
 

@@ -40,6 +40,13 @@ class Project extends Publication
         $this->guests = new ArrayCollection();
     }
 
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     /**
      * Getter of the guests of the project.
      *
@@ -59,7 +66,7 @@ class Project extends Publication
      */
     public function addGuest(Guest $guest): self
     {
-        if (!$this->guests->contains($guests)) {
+        if (!$this->guests->contains($guest)) {
             $this->guests[] = $guest;
         }
 
