@@ -3,7 +3,7 @@
 {% block body %}
     {{ parent() }}
     <div class="container">
-        <section class="mt-5">
+        <section class="my-5">
             <div class="col-md-6 mx-auto">
                 {% if error_message is defined %}
                     <div class="alert alert-{{ error_class }} text-center">{{ error_message }}</div>
@@ -13,27 +13,52 @@
                 <h1>{{ record.label }}</h1>
                 <p class="lead">Publication date : {{ record.datePublication|date('d/m/Y') }}</p>
                 {% if record.image %}
-                    <img src="{{ asset('images/publications/' ~ record.image) }}" alt="Image not loaded.">
+                    <img class="img-fluid" src="{{ asset('images/publications/' ~ record.image) }}" alt="Image not loaded.">
                 {% endif %}
                 <p class="lead">{{ record.description }}</p>
                 {% if type == 'event' %}
                     <p class="lead">Event date : {{ record.eventDate|date('d/m/Y') }}</p>
                     <p class="lead">Place : {{ record.place }}</p>
+                    <article>
+                        <h3>Participations :</h3>
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Firstname</th>
+                                <th scope="col">Answer</th>
+                                <th scope="col">Nb Persons</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for participation in participations %}
+                                    <tr>
+                                        <td>{{ participation.guest.name }}</td>
+                                        <td>{{ participation.guest.firstname }}</td>
+                                        {% if participation.participe == 1 %}
+                                            <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ participation.nbPersons }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </article>
                 {% elseif type == 'project' %}
                     <p class="lead">End date : {{ record.endDate|date('d/m/Y') }}</p>
-                    <ul>
-                        {% for participant in record.guests %}
-                            <li class="lead">{{ participant.name }} {{ participant.firstname }}</li>
-                        {% endfor %}
-                    </ul>
+                    <article>
+                        <h3>Participants :</h3>
+                        <ul>
+                            {% for participant in record.guests %}
+                                <li class="lead">{{ participant.firstname }} {{ participant.name|upper }}</li>
+                            {% endfor %}
+                        </ul>
+                    </article>
                 {% endif %}
                 {{ form_start(form) }}
                     <div class="form-group">
-                        <fieldset disabled>
-                            <div class="form-group">
-                                {{ form_widget(form.id, {'attr': {'class': 'form-control invisible', 'value': record.id}}) }}
-                            </div>
-                        </fieldset>
                         {% if type == 'event' %}
                             <div class="form-group">
                                 {{ form_label(form.nb_persons, 'Number of persons') }}

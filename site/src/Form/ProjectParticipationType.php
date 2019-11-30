@@ -29,7 +29,6 @@ class ProjectParticipationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id', NumberType::class)
             ->add('participe', SubmitType::class);
     }
 

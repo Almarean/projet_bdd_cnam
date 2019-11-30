@@ -30,9 +30,9 @@ class PublicationsController extends AbstractController
     public function index(): Response
     {
         return $this->render('publications.html.twig', array(
-            'events' => $this->getDoctrine()->getRepository(Event::class)->findAll(),
-            'news' => $this->getDoctrine()->getRepository(News::class)->findAll(),
-            'projects' => $this->getDoctrine()->getRepository(Project::class)->findAll()
+            'events' => $this->getDoctrine()->getRepository(Event::class)->findBy([], ['eventDate' => 'ASC']),
+            'news' => $this->getDoctrine()->getRepository(News::class)->findBy([], ['datePublication' => 'DESC']),
+            'projects' => $this->getDoctrine()->getRepository(Project::class)->findBy([], ['datePublication' => 'ASC'])
         ));
     }
 }

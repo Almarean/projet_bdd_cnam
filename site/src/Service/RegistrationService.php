@@ -86,4 +86,16 @@ class RegistrationService extends AbstractController
             'event' => $event
         )) !== null;
     }
+
+    /**
+     * Check if the email addess used is
+     *
+     * @param string $email Email to check.
+     *
+     * @return boolean|null
+     */
+    public function checkEmailCnam(string $email): ?bool
+    {
+        return preg_match('/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@lecnam.net$/', $email);
+    }
 }

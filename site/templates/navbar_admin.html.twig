@@ -3,24 +3,27 @@
 {% block body %}
     {{ parent() }}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Dashboard BDE</a>
+        <a class="navbar-brand" href="{{ path('dashboard') }}">Dashboard BDE</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ path('dashboard') }}"><i class="fas fa-home"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('publications') }}"><i class="fas fa-user"></i> Client interface</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Registration
+                        <i class="fas fa-edit"></i> Registration
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ path('registration_publications', {'type': 'News'}) }}"><i class="fas fa-newspaper"></i> News</a>
                         <a class="dropdown-item" href="{{ path('registration_publications', {'type': 'Event'}) }}"><i class="fas fa-calendar-day"></i> Events</a>
                         <a class="dropdown-item" href="{{ path('registration_publications', {'type': 'Project'}) }}"><i class="fas fa-network-wired"></i> Projects</a>
-                        <a class="dropdown-item" href="{{ path('registration_publications', {'type': 'Contact'}) }}"><i class="fas fa-id-card"></i> Contacts</a>
+                        <a class="dropdown-item" href="{{ path('registration_publications', {'type': 'Contact'}) }}"><i class="fas fa-user-plus"></i> Contacts</a>
                     </div>
                 </li>
             </ul>

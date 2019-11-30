@@ -35,16 +35,12 @@ class Project extends Publication
      */
     private $endDate;
 
+    /**
+     * Project constructor.
+     */
     public function __construct()
     {
         $this->guests = new ArrayCollection();
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**

@@ -53,6 +53,9 @@ class RegistrationController extends AbstractController
                 $guest->setFirstname(ucwords(strtolower($guest->getFirstname())));
                 $guest->setIsConfirmed(false);
                 $guest->setPassword($encoder->encodePassword($guest, $guest->getPassword()));
+                if ($service->checkEmailCnam($guest->getEmail())) {
+                    $guest->setIsConfirmed(true);
+                }
                 $manager->persist($guest);
                 $manager->flush();
                 return $this->render('registration.html.twig', array(

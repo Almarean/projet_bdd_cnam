@@ -1,0 +1,13 @@
+.bg-cnam {
+    background-color: #c1002a;
+}
+
+.color-cnam {
+    color: #c1002a;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

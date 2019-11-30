@@ -93,7 +93,7 @@ class RegistrationPublicationsController extends AbstractController
                 }
                 if ($type === 'Contact') {
                     $record->setName(ucwords(strtolower($record->getName())));
-                    $record->setFirstname(ucwords(strtolower($record->getName())));
+                    $record->setFirstname(ucwords(strtolower($record->getFirstname())));
                 }
                 $manager->persist($record);
                 $manager->flush();

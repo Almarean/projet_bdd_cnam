@@ -294,7 +294,7 @@ class Guest implements UserInterface
      *
      * @return Collection|Project[]
      */
-    public function getProjects(): Collection
+    public function getProjects(): array
     {
         return $this->projects;
     }

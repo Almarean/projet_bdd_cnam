@@ -2,19 +2,20 @@
 
 namespace App\Controller;
 
-use App\Entity\Event;
 use App\Entity\News;
-use App\Entity\Participation;
+use App\Entity\Event;
+use App\Entity\Guest;
 use App\Entity\Project;
+use App\Entity\Participation;
 use App\Form\EventParticipationType;
-use App\Form\ProjectParticipationType;
 use App\Service\RegistrationService;
+use App\Form\ProjectParticipationType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Class PublicationController extends AbstractController.
@@ -50,7 +51,7 @@ class PublicationController extends AbstractController
             $form = $this->createForm(ProjectParticipationType::class, $record);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-                if (!in_array($security->getUser(), $record->getGuests())) {
+                if (!in_array($security->getUser(), $record->getGuests()->toArray())) {
                     $record->addGuest($security->getUser());
                     $manager->persist($record);
                     $manager->flush();
@@ -78,6 +79,7 @@ class PublicationController extends AbstractController
             ));
         } elseif ($type === 'event') {
             $record = $this->getDoctrine()->getRepository(Event::class)->find($id);
+            $participations = $this->getDoctrine()->getRepository(Participation::class)->findBy(['event' => $record]);
             $participation = new Participation();
             $form = $this->createForm(EventParticipationType::class, $participation);
             $form->handleRequest($request);
@@ -102,6 +104,7 @@ class PublicationController extends AbstractController
                             'type' => $type,
                             'record' => $record,
                             'form' => $form->createView(),
+                            'participations' => $participations,
                             'error_message' => "An error occurred",
                             'error_class' => "danger"
                         ));
@@ -112,6 +115,7 @@ class PublicationController extends AbstractController
                         'type' => $type,
                         'form' => $form->createView(),
                         'record' => $record,
+                        'participations' => $participations,
                         'success_message' => $successMessage,
                         'success_class' => $successClass
                     ));
@@ -120,6 +124,7 @@ class PublicationController extends AbstractController
                         'type' => $type,
                         'form' => $form->createView(),
                         'record' => $record,
+                        'participations' => $participations,
                         'error_message' => "You already give an answer for this event !",
                         'error_class' => "warning"
                     ));
@@ -128,7 +133,8 @@ class PublicationController extends AbstractController
             return $this->render('publication.html.twig', array(
                 'type' => $type,
                 'form' => $form->createView(),
-                'record' => $record
+                'record' => $record,
+                'participations' => $participations
             ));
         } else {
             return $this->render('publications.html.twig', array(

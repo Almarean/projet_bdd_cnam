@@ -34,7 +34,6 @@ class EventParticipationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id',NumberType::class)
             ->add('nb_persons', NumberType::class)
             ->add('yes', SubmitType::class)
             ->add('no', SubmitType::class);
