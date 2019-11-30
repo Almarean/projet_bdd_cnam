@@ -95,6 +95,8 @@ ALTER TABLE ONLY participation ADD CONSTRAINT fk_participation_guest FOREIGN KEY
 ALTER TABLE ONLY project_guest ADD CONSTRAINT fk_project_guest_project FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE CASCADE;
 ALTER TABLE ONLY project_guest ADD CONSTRAINT fk_project_guest_guest FOREIGN KEY (guest_id) REFERENCES guest(id) ON DELETE CASCADE;
 
+ALTER TABLE ONLY project_guest ADD CONSTRAINT fk_project_guest_guest FOREIGN KEY (guest_id) REFERENCES guest(id) ON DELETE CASCADE;
+
 CREATE OR REPLACE FUNCTION func_check_event_date(event_date timestamp)
 RETURNS bool AS $$
 BEGIN
